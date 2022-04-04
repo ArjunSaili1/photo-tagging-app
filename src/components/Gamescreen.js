@@ -1,13 +1,20 @@
+import { useState } from 'react';
 import backgroundImage from '../assets/background.jpg';
 
 function Gamescreen(props){
 
-    function getCoordinates(e){
-        console.log(e.clientX, e.clientY)
+    const [coordinates, setCoordinates] = useState(null);
+
+    function createCurorOutline(e){
+        setCoordinates([e.pageX, e.pageY]);
+
     }
 
-    return(<div className='gamescreen' onClick={getCoordinates}>
+    return(<div className='gamescreen' onClick={createCurorOutline}>
         <img className="background-img" src={backgroundImage}/>
+        {coordinates ? <div className="coordinate-select">
+            <div className="cursor-outline" style={{top: coordinates[1], left: coordinates[0]}}></div>
+        </div> : null}
     </div>)
 }
 
