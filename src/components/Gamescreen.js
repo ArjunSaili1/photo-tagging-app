@@ -6,12 +6,12 @@ function Gamescreen(props){
     const [coordinates, setCoordinates] = useState(null);
 
     function createCurorOutline(e){
-        setCoordinates([e.pageX, e.pageY]);
+        if(coordinates)(setCoordinates(null))
+        else{setCoordinates([e.pageX, e.pageY])}
     }
 
     function selectCharacter(e){
         e.stopPropagation();
-        console.log(e.target)
     }
 
     return(<div className='gamescreen' onClick={createCurorOutline}>
@@ -23,7 +23,7 @@ function Gamescreen(props){
                 <button onClick={selectCharacter} className="character-option">Kratos</button>
             </div>
         </div> : null}
-        <img className="background-img" src={backgroundImage}/>
+        <img alt="background" className="background-img" src={backgroundImage}/>
     </div>)
 }
 
