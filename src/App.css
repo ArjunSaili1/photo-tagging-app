@@ -10,12 +10,32 @@
 
 .background-img{
   max-width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
 .cursor-outline{
   position: absolute;
+  z-index: 2;
   border: 5px dashed red;
   border-radius: 50%;
   padding: 35px;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.dropdown-menu{
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.character-option{
+  cursor: pointer;
+  background: none;
+  border: none;
 }
