@@ -21,11 +21,16 @@ function Gamescreen(props){
         else{setCoordinates([e.pageX, e.pageY])}
     }
 
-    async function selectCharacter(e){
-        e.stopPropagation();
+    function getCoordRange(){
         const {top, bottom, left: minX , right: maxX} = cursorOutlineRef.current.getBoundingClientRect();
         const minY = top - document.body.getBoundingClientRect().top;
         const maxY = bottom - document.body.getBoundingClientRect().bottom
+        return {minX, maxX, minY, maxY};
+    }
+
+    async function selectCharacter(e){
+        e.stopPropagation();
+        const {minX, maxX, minY, maxY} = getCoordRange();
         const characterQuery = query(locationsColRef, where("name", "==" , e.target.textContent))
         const characterQuerySnapshot = await getDocs(characterQuery);
         characterQuerySnapshot.forEach((character)=>{
