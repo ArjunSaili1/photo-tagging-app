@@ -28,6 +28,7 @@ function Gamescreen(props){
                 console.log(false)
             }
         })
+        setCoordinates(null);
     }
 
     return(<div className='gamescreen' onClick={createCurorOutline}>
