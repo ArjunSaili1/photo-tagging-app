@@ -7,7 +7,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 function Gamescreen(){
 
     const [coordinates, setCoordinates] = useState(null);
-    const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Patrick Star", "Kratos"]);
+    const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Jabba The Hut", "Kratos"]);
     const locationsColRef = collection(db, "locations");
     const cursorOutlineRef = useRef(null);
 
