@@ -4,11 +4,11 @@ import Dropdown from './Dropdown';
 import db from '../firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 
-function Gamescreen(props){
+function Gamescreen(){
 
     const [coordinates, setCoordinates] = useState(null);
-    const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Patrick Star", "Kratos"])
-    const locationsColRef = collection(db, "locations")
+    const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Patrick Star", "Kratos"]);
+    const locationsColRef = collection(db, "locations");
     const cursorOutlineRef = useRef(null);
 
     const dropdownStyles = coordinates ? {
@@ -17,30 +17,39 @@ function Gamescreen(props){
     } : null;
 
     function createCurorOutline(e){
-        if(coordinates)(setCoordinates(null))
-        else{setCoordinates([e.pageX, e.pageY])}
+        coordinates ? setCoordinates(null) : setCoordinates([e.pageX, e.pageY]);
     }
 
-    function getCoordRange(){
-        const {top, bottom, left: minX , right: maxX} = cursorOutlineRef.current.getBoundingClientRect();
-        const minY = top - document.body.getBoundingClientRect().top;
-        const maxY = bottom - document.body.getBoundingClientRect().bottom
-        return {minX, maxX, minY, maxY};
+    function targetBoxIntersect(left, right, top, bottom){
+        const { left: cursorLeft, 
+                right: cursorRight, 
+                top: viewportCursorTop, 
+                bottom: viewportCursorBottom} = cursorOutlineRef.current.getBoundingClientRect();
+
+        const cursorTop = viewportCursorTop - document.body.getBoundingClientRect().top;
+        const cursorBottom = viewportCursorBottom - document.body.getBoundingClientRect().bottom;
+
+        function checkX(cursorLeft, cursorRight){
+            return (cursorLeft > left && cursorLeft < right) || 
+            (cursorRight > left && cursorRight < right);
+        }
+
+        function checkY(cursorTop, cursorBottom){
+            return (cursorTop > top && cursorTop < bottom) || 
+            (cursorBottom > top && cursorBottom < bottom);
+        }
+
+        return checkX(cursorLeft, cursorRight) && checkY(cursorTop, cursorBottom);
     }
 
     async function selectCharacter(e){
         e.stopPropagation();
-        const {minX, maxX, minY, maxY} = getCoordRange();
-        const characterQuery = query(locationsColRef, where("name", "==" , e.target.textContent))
+        const characterQuery = query(locationsColRef, where("name", "==" , e.target.textContent));
         const characterQuerySnapshot = await getDocs(characterQuery);
         characterQuerySnapshot.forEach((character)=>{
-            const xCoord = character.data().coordinates[0];
-            const yCoord = character.data().coordinates[1];
-            if(xCoord > minX && xCoord < maxX && yCoord < maxY && yCoord > minY){
-                setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound !== character.data().name))    
-            }
-            else{
-                console.log(false)
+            const {left, right, top, bottom} = character.data();
+            if(targetBoxIntersect(left, right, top, bottom)){
+                setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound !== character.data().name));
             }
         })
         setCoordinates(null);
@@ -55,4 +64,4 @@ function Gamescreen(props){
     </div>)
 }
 
-export default Gamescreen
+export default Gamescreen;
