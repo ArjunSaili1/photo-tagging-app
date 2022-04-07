@@ -3,11 +3,13 @@ import backgroundImage from '../assets/background.jpg';
 import Dropdown from './Dropdown';
 import db from '../firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
+import FoundMessage from './FoundMessage';
 
 function Gamescreen(){
 
     const [coordinates, setCoordinates] = useState(null);
     const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Jabba The Hut", "Kratos"]);
+    const [found, setFound] = useState('unset');
     const locationsColRef = collection(db, "locations");
     const cursorOutlineRef = useRef(null);
 
@@ -50,16 +52,26 @@ function Gamescreen(){
             const {left, right, top, bottom} = character.data();
             if(targetBoxIntersect(left, right, top, bottom)){
                 setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound !== character.data().name));
+                setFound(character.data().name);
+            }
+            else{
+                setFound(null)
             }
         })
         setCoordinates(null);
     }
 
-    return(<div className='gamescreen' onClick={createCurorOutline}>
-        {coordinates ? <div className="coordinate-select">
+    function renderTarget(){
+        return (coordinates ? 
+        <div className="coordinate-select">
             <div ref={cursorOutlineRef} className="cursor-outline" style={{top: coordinates[1], left: coordinates[0]}}></div>
             <Dropdown selectCharacter={selectCharacter} characters={unfoundCharacters} style={dropdownStyles}/>
-        </div> : null}
+        </div> : null)
+    }
+
+    return(<div className='gamescreen' onClick={createCurorOutline}>
+        {renderTarget()}
+        <FoundMessage character={found}/>
         <img alt="background" className="background-img" src={backgroundImage}/>
     </div>)
 }
