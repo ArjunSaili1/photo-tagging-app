@@ -4,14 +4,11 @@
   box-sizing: border-box;
 }
 
-.gamescreen{
-  width: 100vw;
-}
-
 .background-img{
-  max-width: 100%;
   position: absolute;
   z-index: 1;
+  height: auto;
+  overflow-x: scroll;
 }
 
 .cursor-outline{
