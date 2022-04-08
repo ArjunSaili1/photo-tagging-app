@@ -5,10 +5,9 @@ import db from '../firebase'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import FoundMessage from './FoundMessage';
 
-function Gamescreen(){
+function Gamescreen({unfoundCharacters, setUnfoundCharacters}){
 
     const [coordinates, setCoordinates] = useState(null);
-    const [unfoundCharacters, setUnfoundCharacters] = useState(["Neo", "Jabba The Hut", "Kratos"]);
     const [found, setFound] = useState('unset');
     const locationsColRef = collection(db, "locations");
     const cursorOutlineRef = useRef(null);
@@ -26,7 +25,7 @@ function Gamescreen(){
         const { left: cursorLeft, 
                 right: cursorRight, 
                 top: viewportCursorTop, 
-                bottom: viewportCursorBottom} = cursorOutlineRef.current.getBoundingClientRect();
+                bottom: viewportCursorBottom } = cursorOutlineRef.current.getBoundingClientRect();
 
         const cursorTop = viewportCursorTop - document.body.getBoundingClientRect().top;
         const cursorBottom = viewportCursorBottom - document.body.getBoundingClientRect().bottom;
@@ -51,7 +50,7 @@ function Gamescreen(){
         characterQuerySnapshot.forEach((character)=>{
             const {left, right, top, bottom} = character.data();
             if(targetBoxIntersect(left, right, top, bottom)){
-                setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound !== character.data().name));
+                setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound.name !== character.data().name));
                 setFound(character.data().name);
             }
             else{
