@@ -68,7 +68,7 @@ function Gamescreen({unfoundCharacters, setUnfoundCharacters}){
         </div> : null)
     }
 
-    return(<div className='gamescreen' onClick={createCurorOutline}>
+    return(<div className='gamescreen' onClick={createCurorOutline} style={unfoundCharacters ? {position: "static"} : {position: "fixed"}}>
         {renderTarget()}
         <FoundMessage character={found}/>
         <img alt="background" className="background-img" src={backgroundImage}/>
