@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { serverTimestamp, addDoc, collection } from '@firebase/firestore';
+import db from '../firebase'
 import neoImg from '../assets/characterImages/neo.png';
 import jabbaImg from '../assets/characterImages/jabba.png';
 import bowserImg from '../assets/characterImages/bowser.png'
@@ -9,7 +11,7 @@ import batmanImg from '../assets/characterImages/batman.png'
 import theKnightImg from '../assets/characterImages/theknight.png';
 import aangImg from '../assets/characterImages/aang.png'
 
-function StartModal({setUnfoundCharacters}){
+function StartModal({setUnfoundCharacters, setUserDoc}){
 
     const [difficultyCharacters, setDifficultyCharacters] = useState(null);
     const [showStart, setShowStart] = useState(true)
@@ -44,9 +46,13 @@ function StartModal({setUnfoundCharacters}){
         }
     }
 
-    function startGame(){
+    async function startGame(){
         setUnfoundCharacters(difficultyCharacters);
         setShowStart(false)
+        const userDocRef = await addDoc(collection(db, "users"),{
+            startTime: serverTimestamp()
+        });
+        setUserDoc(userDocRef);
     }
 
     function renderStart(){

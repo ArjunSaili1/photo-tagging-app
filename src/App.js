@@ -1,16 +1,16 @@
 import Gamescreen from "./components/Gamescreen";
-import Header from "./components/Header";
 import StartModal from "./components/StartModal";
 import './App.css';
 import { useState } from "react";
 
 function App() {
   const [unfoundCharacters, setUnfoundCharacters] = useState(null);
+  const [userDoc, setUserDoc] = useState(null);
+
   return (
     <div className="App">
-      <Header/>
-      <StartModal setUnfoundCharacters={setUnfoundCharacters}/>
-      <Gamescreen unfoundCharacters={unfoundCharacters} setUnfoundCharacters={setUnfoundCharacters}/>
+      <StartModal setUnfoundCharacters={setUnfoundCharacters} setUserDoc={setUserDoc}/>
+      <Gamescreen unfoundCharacters={unfoundCharacters} userDoc={userDoc} setUnfoundCharacters={setUnfoundCharacters}/>
     </div>
   );
 }

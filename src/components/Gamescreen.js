@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import backgroundImage from '../assets/background.jpg';
 import Dropdown from './Dropdown';
 import db from '../firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { collection, query, where, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore'
 import FoundMessage from './FoundMessage';
 
-function Gamescreen({unfoundCharacters, setUnfoundCharacters}){
+function Gamescreen({unfoundCharacters, setUnfoundCharacters, userDoc}){
 
     const [coordinates, setCoordinates] = useState(null);
     const [found, setFound] = useState('unset');
@@ -16,6 +16,19 @@ function Gamescreen({unfoundCharacters, setUnfoundCharacters}){
         top: coordinates[1] + 15,
         left: coordinates[0] + 15
     } : null;
+
+    useEffect(()=>{
+        if(unfoundCharacters !== null && unfoundCharacters.length === 0){
+            async function finishGame(){
+                const addFinishTime = await updateDoc(userDoc, {
+                    endTime: serverTimestamp()
+                });
+            }
+            finishGame()
+        }
+    }, [unfoundCharacters, userDoc])
+
+
 
     function createCurorOutline(e){
         coordinates ? setCoordinates(null) : setCoordinates([e.pageX, e.pageY]);
