@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CharactersContext } from '../context/CharactersContext';
+import { UserContext } from '../context/UserContext';
 import { serverTimestamp, addDoc, collection } from '@firebase/firestore';
 import db from '../firebase'
 import neoImg from '../assets/characterImages/neo.png';
@@ -11,9 +13,11 @@ import batmanImg from '../assets/characterImages/batman.png'
 import theKnightImg from '../assets/characterImages/theknight.png';
 import aangImg from '../assets/characterImages/aang.png'
 
-function StartModal({setUnfoundCharacters, setUserDoc}){
+function StartModal(){
 
     const [difficultyCharacters, setDifficultyCharacters] = useState(null);
+    const {setUserDoc} = useContext(UserContext)
+    const {setUnfoundCharacters} =  useContext(CharactersContext);
     const [showStart, setShowStart] = useState(true)
 
     const easyCharacters = [

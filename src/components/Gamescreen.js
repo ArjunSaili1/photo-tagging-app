@@ -1,12 +1,16 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import { CharactersContext } from '../context/CharactersContext';
 import backgroundImage from '../assets/background.jpg';
 import Dropdown from './Dropdown';
 import db from '../firebase'
 import { collection, query, where, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore'
 import FoundMessage from './FoundMessage';
 
-function Gamescreen({unfoundCharacters, setUnfoundCharacters, userDoc}){
+function Gamescreen(){
 
+    const {setUnfoundCharacters, unfoundCharacters} = useContext(CharactersContext);
+    const {userDoc} = useContext(UserContext);
     const [coordinates, setCoordinates] = useState(null);
     const [found, setFound] = useState('unset');
     const locationsColRef = collection(db, "locations");
@@ -20,7 +24,7 @@ function Gamescreen({unfoundCharacters, setUnfoundCharacters, userDoc}){
     useEffect(()=>{
         if(unfoundCharacters !== null && unfoundCharacters.length === 0){
             async function finishGame(){
-                const addFinishTime = await updateDoc(userDoc, {
+                await updateDoc(userDoc, {
                     endTime: serverTimestamp()
                 });
             }
@@ -76,12 +80,14 @@ function Gamescreen({unfoundCharacters, setUnfoundCharacters, userDoc}){
     function renderTarget(){
         return (coordinates ? 
         <div className="coordinate-select">
-            <div ref={cursorOutlineRef} className="cursor-outline" style={{top: coordinates[1], left: coordinates[0]}}></div>
-            <Dropdown selectCharacter={selectCharacter} characters={unfoundCharacters} style={dropdownStyles}/>
+            <div ref={cursorOutlineRef} className="cursor-outline" 
+            style={{top: coordinates[1], left: coordinates[0]}}></div>
+            <Dropdown selectCharacter={selectCharacter} style={dropdownStyles}/>
         </div> : null)
     }
 
-    return(<div className='gamescreen' onClick={createCurorOutline} style={unfoundCharacters ? {position: "static"} : {position: "fixed"}}>
+    return(<div className='gamescreen' onClick={createCurorOutline} 
+    style={unfoundCharacters ? {position: "static"} : {position: "fixed"}}>
         {renderTarget()}
         <FoundMessage character={found}/>
         <img alt="background" className="background-img" src={backgroundImage}/>

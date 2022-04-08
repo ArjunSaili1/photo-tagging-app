@@ -1,7 +1,10 @@
+import { useContext } from "react"
+import { CharactersContext } from "../context/CharactersContext"
 function Dropdown({selectCharacter, characters, style}){
+    const {unfoundCharacters} = useContext(CharactersContext);
     return(
         <div className="dropdown-menu" style={style}>
-            {characters.map(({name, img})=>{
+            {unfoundCharacters.map(({name, img})=>{
                 return(
                     <button key={name} onClick={selectCharacter} className="character-option">
                         {name}
