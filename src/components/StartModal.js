@@ -52,40 +52,41 @@ function StartModal({setUnfoundCharacters}){
     function renderStart(){
         if(difficultyCharacters){
             return(
-                <div className="start-modal-container">
-                    <div className="start-modal">
-                        <h2>Find These Characters!</h2>
-                        <div className="character-container">
-                            {difficultyCharacters.map(({name, img}) => {
-                                return(
-                                    <div key={name} className="character">
-                                        <img className="character-img" alt={name} src={img}></img>
-                                        <h3>{name}</h3>
-                                    </div>
-                                )}
+                <>  
+                    <h2>Find These Characters!</h2>
+                    <div className="character-container">
+                        {difficultyCharacters.map(({name, img}) => {
+                            return(
+                                <div key={name} className="character">
+                                    <img className="character-img" alt={name} src={img}></img>
+                                    <h3>{name}</h3>
+                                </div>
                             )}
-                        </div>
-                        <button onClick={startGame} className="start-btn">Start</button>
+                        )}
                     </div>
-                </div>
+                    <button onClick={startGame} className="start-btn">Start</button>
+                </>
             )
         }
         else{
             return(
-            <div className="start-modal-container">
-                <div className="start-modal">
-                    <h2>Choose a Difficulty</h2>
-                    <div className="dif-opitions">
-                        <button onClick={createCharacterDisplay}>Easy</button>
-                        <button onClick={createCharacterDisplay}>Medium</button>
-                        <button onClick={createCharacterDisplay}>Hard</button>
-                    </div>
+            <>
+                <h2>Choose a Difficulty</h2>
+                <div className="dif-opitions">
+                    <button onClick={createCharacterDisplay}>Easy</button>
+                    <button onClick={createCharacterDisplay}>Medium</button>
+                    <button onClick={createCharacterDisplay}>Hard</button>
                 </div>
-            </div>)
+            </>)
         }
     }
 
-    return(showStart ? renderStart() : null)
+    return(showStart ? 
+    <div className="start-modal-container">
+        <div className="start-modal">
+            {renderStart()}
+        </div>
+    </div> : null)
 }
 
 export default StartModal
