@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import neoImg from '../assets/characterImages/neo.png';
 import jabbaImg from '../assets/characterImages/jabba.png';
 import bowserImg from '../assets/characterImages/bowser.png'
@@ -8,7 +9,10 @@ import batmanImg from '../assets/characterImages/batman.png'
 import theKnightImg from '../assets/characterImages/theknight.png';
 import aangImg from '../assets/characterImages/aang.png'
 
-function StartModal(){
+function StartModal({setUnfoundCharacters}){
+
+    const [difficultyCharacters, setDifficultyCharacters] = useState(null);
+    const [showStart, setShowStart] = useState(true)
 
     const easyCharacters = [
         {name: "Neo", img: neoImg},
@@ -28,16 +32,60 @@ function StartModal(){
         {name: "Aang", img: aangImg}
     ]
 
-    return(<div className="start-modal-container">
-        <div className="start-modal">
-            <h2>Choose a Difficulty</h2>
-            <div className="dif-opitions">
-                <button>Easy</button>
-                <button>Medium</button>
-                <button>Hard</button>
-            </div>
-        </div>
-    </div>)
+    function createCharacterDisplay(e){
+        if(e.target.textContent === "Easy"){
+            setDifficultyCharacters(easyCharacters)
+        }
+        else if(e.target.textContent === "Medium"){
+            setDifficultyCharacters(mediumCharacters)
+        }
+        else{
+            setDifficultyCharacters(hardCharacters)
+        }
+    }
+
+    function startGame(){
+        setUnfoundCharacters(difficultyCharacters);
+        setShowStart(false)
+    }
+
+    function renderStart(){
+        if(difficultyCharacters){
+            return(
+                <div className="start-modal-container">
+                    <div className="start-modal">
+                        <h2>Find These Characters!</h2>
+                        <div className="character-container">
+                            {difficultyCharacters.map(({name, img}) => {
+                                return(
+                                    <div key={name} className="character">
+                                        <img className="character-img" alt={name} src={img}></img>
+                                        <h3>{name}</h3>
+                                    </div>
+                                )}
+                            )}
+                        </div>
+                        <button onClick={startGame} className="start-btn">Start</button>
+                    </div>
+                </div>
+            )
+        }
+        else{
+            return(
+            <div className="start-modal-container">
+                <div className="start-modal">
+                    <h2>Choose a Difficulty</h2>
+                    <div className="dif-opitions">
+                        <button onClick={createCharacterDisplay}>Easy</button>
+                        <button onClick={createCharacterDisplay}>Medium</button>
+                        <button onClick={createCharacterDisplay}>Hard</button>
+                    </div>
+                </div>
+            </div>)
+        }
+    }
+
+    return(showStart ? renderStart() : null)
 }
 
 export default StartModal
