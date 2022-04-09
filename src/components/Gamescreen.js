@@ -72,7 +72,9 @@ function Gamescreen(){
         characterQuerySnapshot.forEach((character)=>{
             const {left, right, top, bottom} = character.data();
             if(targetBoxIntersect(left, right, top, bottom)){
-                setUnfoundCharacters(unfoundCharacters.filter(unFound => unFound.name !== character.data().name));
+                setUnfoundCharacters(unfoundCharacters.filter(unFound => {
+                    return unFound.name !== character.data().name
+                }));
                 setFound(character.data().name);
             }
             else{
