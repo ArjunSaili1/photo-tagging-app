@@ -1,6 +1,7 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { CharactersContext } from '../context/CharactersContext';
 import { UserContext } from '../context/UserContext';
+import { ShowLeaderboardContext } from '../context/ShowLeaderboardContext';
 import { serverTimestamp, addDoc, collection } from '@firebase/firestore';
 import db from '../utils/firebase'
 import neoImg from '../assets/characterImages/neo.png';
@@ -16,9 +17,15 @@ import aangImg from '../assets/characterImages/aang.png'
 function StartModal(){
 
     const [difficultyCharacters, setDifficultyCharacters] = useState(null);
+    const {setShowLeaderboard} = useContext(ShowLeaderboardContext)
     const {setUserDoc} = useContext(UserContext)
     const {setUnfoundCharacters} =  useContext(CharactersContext);
     const [showStart, setShowStart] = useState(true)
+
+
+    useEffect(()=>{
+        setShowLeaderboard(false)
+    }, [setShowLeaderboard])
 
     const easyCharacters = [
         {name: "Neo", img: neoImg},
@@ -74,7 +81,10 @@ function StartModal(){
                             )}
                         )}
                     </div>
-                    <button onClick={startGame} className="start-btn">Start</button>
+                    <div className="start-modal-btn-ctn">
+                        <button onClick={()=>{setShowLeaderboard(true); setShowStart(false)}}>Show Leaderboard</button>
+                        <button onClick={startGame} className="start-btn">Start</button>
+                    </div>
                 </>
             )
         }
@@ -92,8 +102,8 @@ function StartModal(){
     }
 
     return(showStart ? 
-    <div className="start-modal-container">
-        <div className="start-modal">
+    <div className="modal-container">
+        <div className="modal">
             {renderStart()}
         </div>
     </div> : null)
