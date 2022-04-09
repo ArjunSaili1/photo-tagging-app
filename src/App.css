@@ -75,7 +75,7 @@ body, button{
   background-color: white;
 }
 
-.start-modal-container{
+.modal-container{
   position: fixed;
   width: 100vw;
   z-index: 100;
@@ -87,7 +87,7 @@ body, button{
   align-items: center;
 }
 
-.start-modal{
+.modal{
   position: relative;
   width: 40vw;
   min-width: 500px;
@@ -132,12 +132,15 @@ body, button{
   align-items: center;
 }
 
-.start-btn{
-  right: 30px;
-  bottom: 20px;
+.start-modal-btn-ctn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.start-modal-btn-ctn > button{
   font-size: 1rem;
   padding: 10px;
-  position:absolute;
 }
 
 .dropdown-img{
