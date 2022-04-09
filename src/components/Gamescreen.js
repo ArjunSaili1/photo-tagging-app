@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { getTime } from '../utils/getTime';
 import { CharactersContext } from '../context/CharactersContext';
 import backgroundImage from '../assets/background.jpg';
 import Dropdown from './Dropdown';
-import db from '../firebase'
+import db from '../utils/firebase'
 import { collection, query, where, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore'
 import FoundMessage from './FoundMessage';
 
@@ -27,6 +28,10 @@ function Gamescreen(){
                 await updateDoc(userDoc, {
                     endTime: serverTimestamp()
                 });
+                const time = await getTime(userDoc)
+                await updateDoc(userDoc, {
+                    time: time
+                })
             }
             finishGame()
         }

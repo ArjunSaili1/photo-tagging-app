@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { CharactersContext } from '../context/CharactersContext';
 import { UserContext } from '../context/UserContext';
 import { serverTimestamp, addDoc, collection } from '@firebase/firestore';
-import db from '../firebase'
+import db from '../utils/firebase'
 import neoImg from '../assets/characterImages/neo.png';
 import jabbaImg from '../assets/characterImages/jabba.png';
 import bowserImg from '../assets/characterImages/bowser.png'
