@@ -28,7 +28,7 @@ function Gamescreen({setShowWinScreen}){
                 return unFound.name !== found
             }));
         }
-    },[found, unfoundCharacters, setUnfoundCharacters])
+    },[found])
 
     useEffect(()=>{
         if(unfoundCharacters !== null && unfoundCharacters.length === 0){
@@ -53,13 +53,15 @@ function Gamescreen({setShowWinScreen}){
     }
 
     function targetBoxIntersect(left, right, top, bottom){
-        const { left: cursorLeft, 
-                right: cursorRight, 
+        const { left: viewPortCursorLeft, 
+                right: viewPortCursorRight, 
                 top: viewportCursorTop, 
                 bottom: viewportCursorBottom } = cursorOutlineRef.current.getBoundingClientRect();
 
         const cursorTop = viewportCursorTop - document.body.getBoundingClientRect().top;
         const cursorBottom = viewportCursorBottom - document.body.getBoundingClientRect().bottom;
+        const cursorLeft = viewPortCursorLeft + window.scrollX;
+        const cursorRight = viewPortCursorRight + window.scrollX;
 
         function checkX(cursorLeft, cursorRight){
             return (cursorLeft > left && cursorLeft < right) || 
