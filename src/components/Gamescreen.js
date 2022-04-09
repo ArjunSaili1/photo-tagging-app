@@ -48,7 +48,7 @@ function Gamescreen({setShowWinScreen}){
 
 
 
-    function createCurorOutline(e){
+    function createCursorOutline(e){
         coordinates ? setCoordinates(null) : setCoordinates([e.pageX, e.pageY]);
     }
 
@@ -99,8 +99,9 @@ function Gamescreen({setShowWinScreen}){
         </div> : null)
     }
 
-    return(<div className='gamescreen' onClick={createCurorOutline} 
-    style={unfoundCharacters ? {position: "static"} : {position: "fixed"}}>
+    return(<div className='gamescreen' onClick={createCursorOutline} 
+    style={!unfoundCharacters || (unfoundCharacters.length === 0 && found) ? 
+        {position: "fixed"} : {position: "static"}}>
         {renderTarget()}
         <FoundMessage character={found}/>
         <img alt="background" className="background-img" src={backgroundImage}/>
