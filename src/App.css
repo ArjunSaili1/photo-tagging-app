@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -6,6 +7,10 @@
 
 html{
   font-size: min(50% + 1.5vw,20px);;
+}
+
+body, button{
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .background-img{
@@ -23,6 +28,10 @@ html{
   transform: translateX(-50%) translateY(-50%);
 }
 
+.gamescreen{
+  cursor: url('../src/assets/cursorImg.png'), auto;
+}
+
 .dropdown-menu{
   position: absolute;
   z-index: 2;
@@ -35,7 +44,9 @@ html{
 }
 
 .character-option{
-  width: 150px;
+  font-weight: bolder;
+  font-size: 0.7rem;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -47,12 +58,16 @@ html{
 .found-msg-container{
   position: fixed;
   z-index: 5;
-  width: 100vw;
+  margin-top: 10vh;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .found-msg{
+  border-width: 0 3px 3px 3px;
+  border-color: black;
+  border-style: solid;
   padding: 2% 0;
   width: 25%;
   text-align: center;
@@ -73,49 +88,85 @@ html{
 }
 
 .start-modal{
-  width: 50vw;
+  position: relative;
+  width: 40vw;
+  min-width: 500px;
   background-color: white;
   border-radius: 10px;
-  padding: 15px;
+  padding: 30px;
 }
 
 .dif-opitions{
-  padding: 20px 0;
+  padding: 50px 0;
+  margin: 50px 0;
   display: grid;
   width: 100%;
   height: 8rem;
-  gap: 10px;
+  gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .dif-opitions > button{
   border-radius: 5px;
   font-size: 1.3rem;
+  padding: 10px;
 }
 
 .character-img{
   width: 100px;
-  height: 110px;
+  height: 160px;
 }
 
 .character-container{
   padding: 50px 0;
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .character{
+  font-weight: 300;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   align-items: center;
 }
 
 .start-btn{
-  font-size: .8rem;
-  padding: 5px;
+  right: 30px;
+  bottom: 20px;
+  font-size: 1rem;
+  padding: 10px;
+  position:absolute;
 }
 
 .dropdown-img{
   width: 40px;
+  height: 60px;
+}
+
+
+header{
+  font-weight: bold;
+  position: fixed;
+  z-index: 4;
+  background-color: white;
+  width: 100vw;
+  height: 10vh;
+  padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.character-count{
+  border: 3px solid red;
+  background-color: red;
   height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 50%;
 }
