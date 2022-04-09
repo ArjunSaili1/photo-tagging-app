@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { CharactersContext } from "../context/CharactersContext"
-function Dropdown({selectCharacter, characters, style}){
+function Dropdown({selectCharacter, style}){
     const {unfoundCharacters} = useContext(CharactersContext);
     return(
         <div className="dropdown-menu" style={style}>
