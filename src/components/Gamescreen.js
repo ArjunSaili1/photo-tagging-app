@@ -8,7 +8,7 @@ import db from '../utils/firebase'
 import { collection, query, where, getDocs, serverTimestamp, updateDoc } from 'firebase/firestore'
 import FoundMessage from './FoundMessage';
 
-function Gamescreen(){
+function Gamescreen({setShowWinScreen}){
 
     const {setUnfoundCharacters, unfoundCharacters} = useContext(CharactersContext);
     const {userDoc} = useContext(UserContext);
@@ -33,9 +33,10 @@ function Gamescreen(){
                     time: time
                 })
             }
-            finishGame()
+            finishGame();
+            setShowWinScreen(true);
         }
-    }, [unfoundCharacters, userDoc])
+    }, [unfoundCharacters, userDoc, setShowWinScreen])
 
 
 
