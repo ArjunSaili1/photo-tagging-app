@@ -1,5 +1,6 @@
 import Gamescreen from "./components/Gamescreen";
 import StartModal from "./components/StartModal";
+import Header from "./components/Header";
 import { CharactersContext } from "./context/CharactersContext";
 import { UserContext } from "./context/UserContext";
 import './App.css';
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <CharactersContext.Provider value={{unfoundCharacters, setUnfoundCharacters}}>
+        <Header/>
         <UserContext.Provider value={{userDoc, setUserDoc}}>
           <StartModal/>
           <Gamescreen userDoc={userDoc}/>
