@@ -23,6 +23,14 @@ function Gamescreen({setShowWinScreen}){
     } : null;
 
     useEffect(()=>{
+        if(unfoundCharacters){
+            setUnfoundCharacters(unfoundCharacters.filter(unFound => {
+                return unFound.name !== found
+            }));
+        }
+    },[found, unfoundCharacters, setUnfoundCharacters])
+
+    useEffect(()=>{
         if(unfoundCharacters !== null && unfoundCharacters.length === 0){
             async function finishGame(){
                 await updateDoc(userDoc, {
@@ -73,9 +81,6 @@ function Gamescreen({setShowWinScreen}){
         characterQuerySnapshot.forEach((character)=>{
             const {left, right, top, bottom} = character.data();
             if(targetBoxIntersect(left, right, top, bottom)){
-                setUnfoundCharacters(unfoundCharacters.filter(unFound => {
-                    return unFound.name !== character.data().name
-                }));
                 setFound(character.data().name);
             }
             else{
