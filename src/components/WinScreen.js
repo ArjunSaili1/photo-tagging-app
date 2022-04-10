@@ -10,8 +10,9 @@ function WinScreen({setShowWinScreen}){
     
     async function nameAdd(e){
         e.preventDefault();
+        const username = e.target[0].value
         await updateDoc(userDoc, {
-            name: e.target[0].value
+            name: username ? username : "Anonymous Player"
         });
         setShowWinScreen(false)
         setShowLeaderboard(true)
