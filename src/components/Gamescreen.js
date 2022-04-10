@@ -41,8 +41,9 @@ function Gamescreen({setShowWinScreen}){
                     time: time
                 })
             }
-            finishGame();
-            setShowWinScreen(true);
+            finishGame().then(()=>{
+                setShowWinScreen(true)
+            });
         }
     }, [unfoundCharacters, userDoc, setShowWinScreen])
 
