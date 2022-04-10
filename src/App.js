@@ -22,7 +22,7 @@ function App() {
         <UserContext.Provider value={{userDoc, setUserDoc}}>
           <ShowLeaderboardContext.Provider value={{setShowLeaderboard}}>
             <StartModal/>
-            {showWinScreen ? <WinScreen toggle={setShowWinScreen}/> : null}
+            {showWinScreen ? <WinScreen setShowWinScreen={setShowWinScreen}/> : null}
           </ShowLeaderboardContext.Provider>
           <Gamescreen setShowWinScreen={setShowWinScreen}/>
           {showLeaderboard ? <Leaderboard/> : null}
