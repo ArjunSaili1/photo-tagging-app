@@ -82,7 +82,7 @@ function StartModal(){
                         )}
                     </div>
                     <div className="start-modal-btn-ctn">
-                        <button onClick={()=>{setShowLeaderboard(true); setShowStart(false)}}>Show Leaderboard</button>
+                        <button onClick={()=>{setShowLeaderboard(true); setShowStart(false)}}>Leaderboard</button>
                         <button onClick={startGame} className="start-btn">Start</button>
                     </div>
                 </>
@@ -93,9 +93,9 @@ function StartModal(){
             <>
                 <h2>Choose a Difficulty</h2>
                 <div className="dif-opitions">
-                    <button onClick={createCharacterDisplay}>Easy</button>
-                    <button onClick={createCharacterDisplay}>Medium</button>
-                    <button onClick={createCharacterDisplay}>Hard</button>
+                    <button style={{backgroundColor:"#90EE90"}} onClick={createCharacterDisplay}>Easy</button>
+                    <button style={{backgroundColor: "#feb05a"}}onClick={createCharacterDisplay}>Medium</button>
+                    <button style={{backgroundColor: "#ff6e40"}}onClick={createCharacterDisplay}>Hard</button>
                 </div>
             </>)
         }
