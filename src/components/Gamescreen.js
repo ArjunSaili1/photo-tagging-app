@@ -103,7 +103,7 @@ function Gamescreen({setShowWinScreen}){
 
     return(<div className='gamescreen' onClick={createCursorOutline} 
     style={!unfoundCharacters || (unfoundCharacters.length === 0 && found) ? 
-        {position: "fixed"} : {position: "static"}}>
+        {position: "fixed"} : {position: "relative"}}>
         {renderTarget()}
         <FoundMessage character={found}/>
         <img alt="background" className="background-img" src={backgroundImage}/>
