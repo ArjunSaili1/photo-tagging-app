@@ -90,7 +90,7 @@ function Gamescreen({setShowWinScreen}){
                 setFound(null)
             }
         })
-        setCoordinates(null);
+        setCoordinates(0);
     }
 
     function renderTarget(){
@@ -106,7 +106,7 @@ function Gamescreen({setShowWinScreen}){
     style={!unfoundCharacters || (unfoundCharacters.length === 0 && found) ? 
         {position: "fixed"} : {position: "relative"}}>
         {renderTarget()}
-        <FoundMessage character={found}/>
+        {coordinates === 0 ? <FoundMessage character={found}/> : null}
         <img alt="background" className="background-img" src={backgroundImage}/>
     </div>)
 }
