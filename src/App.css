@@ -212,3 +212,26 @@ header{
   align-items: center;
   gap: 0.3rem;
 }
+
+.leaderboard{
+  display: flex;
+  padding: 20px 12px;
+  gap: 20px;
+  flex-direction: column;
+  align-items: space-between;
+}
+
+.leaderboard-labels{
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard-player{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leaderboard-name{
+  width: 60%;
+}

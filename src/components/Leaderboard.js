@@ -1,14 +1,16 @@
 import db from "../utils/firebase"
 import { collection, query, orderBy, getDocs } from "@firebase/firestore"
-import {useEffect } from "react";
+import { useEffect, useState } from "react";
+import uniqid from "uniqid";
 
 function Leaderboard(){
 
+    const [users, setUsers] = useState(null);
 
     useEffect(()=>{
 
         let usersArray = [];  
-
+        
         async function getUserDocs(){
             const usersCollectionRef = collection(db, "users");
             const usersQuery = query(usersCollectionRef, orderBy("time"))
@@ -58,13 +60,28 @@ function Leaderboard(){
                     usersArray.push({name: user.data().name, time: user.data()["time"]});
                 }
             })
-        }).then(()=>{bubbleSortByTime(usersArray)})
-
+        }).then(()=>{bubbleSortByTime(usersArray)}).then(()=>{
+            console.log(usersArray)
+            setUsers([...usersArray])})
     }, [])
 
     return(<div className="modal-container">
         <div className="modal">
-            <h2>Leaderboard</h2>
+            <h2 className="leaderboard-title">Leaderboard</h2>
+            <ul className="leaderboard">
+                <div className="leaderboard-labels">
+                    <h3>Name</h3>
+                    <h3>Time</h3>
+                </div>
+                {users ? users.slice(0,11).map((user) =>{
+                    return(
+                        <li className="leaderboard-player"key={uniqid()}>
+                            <h4 className="leaderboard-name">{user["name"]}</h4>
+                            <h4>{user["time"]}</h4>
+                        </li>)
+                }): null}
+            </ul>
+
         </div>
     </div>)
 }
