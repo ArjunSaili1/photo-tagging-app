@@ -17,6 +17,13 @@ button{
   cursor: pointer;
 }
 
+@media only screen and (max-width: 450px) {
+  .modal{
+    width: 90vw !important;
+    min-width: 0 !important;
+  }
+}
+
 .background-img{
   position: absolute;
   z-index: 1;
@@ -41,7 +48,6 @@ button{
   z-index: 2;
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -52,6 +58,8 @@ button{
 }
 
 .character-option{
+  border-radius: 10px;
+  padding: 10px;
   font-weight: bolder;
   font-size: 0.95rem;
   width: 12rem;
@@ -110,7 +118,7 @@ button{
   display: grid;
   width: 100%;
   height: 8rem;
-  gap: 20px;
+  gap: 2%;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -121,8 +129,8 @@ button{
 }
 
 .character-img{
-  width: 6rem;
-  height: 8.5rem;
+  width: 4rem;
+  height: 5.5rem;
 }
 
 .character-container{
@@ -159,6 +167,8 @@ button{
 
 
 header{
+  top: 0;
+  left: 0;
   font-weight: bold;
   position: fixed;
   z-index: 4;
@@ -197,8 +207,10 @@ header{
 
 .name-field{
   text-align: center;
-  font-size: 1rem;
-  padding: 3%;
+  font-size: 1.05rem;
+  border-radius: 5px;
+  padding: 2%;
+  width: 70%;
   margin-bottom: 30px;
 }
 
@@ -215,13 +227,15 @@ header{
 
 .leaderboard{
   display: flex;
-  padding: 20px 12px;
+  padding: 25px 10px;
   gap: 20px;
   flex-direction: column;
   align-items: space-between;
 }
 
 .leaderboard-labels{
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
 }
