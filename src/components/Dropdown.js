@@ -1,19 +1,30 @@
 import { useContext } from "react"
 import { CharactersContext } from "../context/CharactersContext"
+import { motion } from 'framer-motion';
 function Dropdown({selectCharacter, style}){
     const {unfoundCharacters} = useContext(CharactersContext);
     return(
-        <div className="dropdown-menu" style={style}>
+        <motion.div 
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        className="dropdown-menu" 
+        style={style}>
             {unfoundCharacters.map(({name, img})=>{
                 return(
-                    <button key={name} onClick={selectCharacter} className="character-option">
+                    <motion.button 
+                    whileHover={{ scale: 1.01,
+                    backgroundColor: "#90EE90" }} 
+                    whileTap={{ scale: 0.99 }}
+                    key={name} 
+                    onClick={selectCharacter} 
+                    className="character-option">
                         {name}
                         <img className="dropdown-img" alt={name} src={img}></img>
-                    </button>
+                    </motion.button>
                 )
             })}
-        </div>
-    )
+        </motion.div>
+    ) 
 }
 
 export default Dropdown

@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { CharactersContext } from '../context/CharactersContext';
 import { UserContext } from '../context/UserContext';
 import { ShowLeaderboardContext } from '../context/ShowLeaderboardContext';
@@ -69,7 +70,8 @@ function StartModal(){
     function renderStart(){
         if(difficultyCharacters){
             return(
-                <>  
+                <motion.div initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}>  
                     <h2>Find These Characters!</h2>
                     <div className="character-container">
                         {difficultyCharacters.map(({name, img}) => {
@@ -82,31 +84,54 @@ function StartModal(){
                         )}
                     </div>
                     <div className="start-modal-btn-ctn">
-                        <button onClick={()=>{setShowLeaderboard(true); setShowStart(false)}}>Leaderboard</button>
-                        <button onClick={startGame} className="start-btn">Start</button>
+                        <motion.button
+                         whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                         onClick={()=>{setShowLeaderboard(true); setShowStart(false)}}>Leaderboard</motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+                        onClick={startGame} className="start-btn">Start</motion.button>
                     </div>
-                </>
+                </motion.div>
             )
         }
         else{
             return(
-            <>
+            <div>
                 <h2>Choose a Difficulty</h2>
                 <div className="dif-opitions">
-                    <button style={{backgroundColor:"#90EE90"}} onClick={createCharacterDisplay}>Easy</button>
-                    <button style={{backgroundColor: "#feb05a"}}onClick={createCharacterDisplay}>Medium</button>
-                    <button style={{backgroundColor: "#ff6e40"}}onClick={createCharacterDisplay}>Hard</button>
+                    <motion.button 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }} 
+                    style={{backgroundColor:"#90EE90"}}
+                    onClick={createCharacterDisplay}>Easy</motion.button>
+                    <motion.button 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }}  
+                    style={{backgroundColor: "#feb05a"}}
+                    onClick={createCharacterDisplay}>Medium</motion.button>
+                    <motion.button 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }}  
+                    style={{backgroundColor: "#ff6e40"}}
+                    onClick={createCharacterDisplay}>Hard</motion.button>
                 </div>
-            </>)
+            </div>)
         }
     }
 
-    return(showStart ? 
-    <div className="modal-container">
-        <div className="modal">
-            {renderStart()}
-        </div>
-    </div> : null)
+    return(
+    <AnimatePresence>
+        {showStart ?
+            <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }} 
+            className="modal-container">
+                <div className="modal">
+                    {renderStart()}
+                </div>
+            </motion.div>
+        : null}
+    </AnimatePresence>)
 }
 
 export default StartModal
