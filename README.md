@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+<div id="top"></div>
+<h1 align="center">Find Em'</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <p align="center">
+    A photo tagging app
+    <br />
+    <br />
+    <a href="https://find-em.vercel.app/">Play</a>
+    ·
+    <a href="https://github.com/ArjunSaili1/photo-tagging-app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/ArjunSaili1/photo-tagging-app">Request Feature</a>
+  </p>
+</div>
 
-## Available Scripts
+## About The Project
 
-In the project directory, you can run:
+  <img width="1512" alt="Screen Shot 2022-04-11 at 7 52 18 PM" src="https://user-images.githubusercontent.com/66842156/162851375-76c44887-b6a3-4b08-b26f-166f1e6f0529.png">
+<a href="#preview">More screenshots</a>
 
-### `npm start`
+Find Em' is a photo tagging app where the objective of the game is to find certain characters hidden within a crowded image as quick as possible.
+The game has 3 levels (Easy, Medium, & Hard) & a leaderboard that displays the top ten fastest players. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+```
+git clone https://github.com/ArjunSaili1/photo-tagging-app
+cd photo-tagging-app
+npm install
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Built With
 
-### `npm run build`
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [React Context API](https://reactjs.org/docs/context.html)
+- [Cloud Firestore](https://firebase.google.com/products/firestore)
+- [Framer Motion](https://www.framer.com/docs/)
+- Vanilla CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Preview
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Desktop
+<div align="center">
+  <img width="1512" alt="Screen Shot 2022-04-11 at 7 44 29 PM" src="https://user-images.githubusercontent.com/66842156/162850747-9ec411f6-ac1d-45da-a7e9-d9c1dc21180b.png">
+  <img width="1512" alt="Screen Shot 2022-04-11 at 7 54 30 PM" src="https://user-images.githubusercontent.com/66842156/162851594-6e8210e7-5b5f-4e0c-847c-5e4a4f9ada10.png">
+  <img width="1511" alt="Screen Shot 2022-04-11 at 7 55 45 PM" src="https://user-images.githubusercontent.com/66842156/162851716-56ef9ae5-5fa6-4661-b5fe-5819d0ff1c07.png">
+</div>
 
-### `npm run eject`
+### Mobile 
+<div align="center">
+<img width="325" alt="Screen Shot 2022-04-11 at 7 57 42 PM" src="https://user-images.githubusercontent.com/66842156/162851873-fa4c098d-7b4e-4c56-b200-8f959d1ea61c.png">
+<img width="325" alt="Screen Shot 2022-04-11 at 7 58 26 PM" src="https://user-images.githubusercontent.com/66842156/162851941-d8a80c0d-2e8a-4158-b05a-8f51754c555f.png">
+<img width="326" alt="Screen Shot 2022-04-11 at 7 57 23 PM" src="https://user-images.githubusercontent.com/66842156/162851849-a44c2c33-a0fe-4563-9e99-d0f202aabcd6.png">
+  </div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contact
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Arjun Saili - [LinkedIn](https://www.linkedin.com/in/arjunsaili/) - arjun7.saili@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#top">back to top</a>)</p>
